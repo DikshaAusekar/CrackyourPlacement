@@ -1,0 +1,26 @@
+public class Solution {
+    public int findDuplicate(int[] nums) {
+        // Start a fast and slow pointer
+        int slow = 0, fast = 0;
+
+        // Move the pointers until they meet
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (slow != fast);
+
+        // As soon as they meet, move both pointers at the same speed until they meet again
+        slow = 0;
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return slow;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        
+    }
+}
