@@ -1,0 +1,42 @@
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int val) { this.val = val; }
+}
+
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0; // Base case: if the node is null, the depth is 0
+        }
+        
+        int leftDepth = maxDepth(root.left); // Calculate depth of left subtree
+        int rightDepth = maxDepth(root.right); // Calculate depth of right subtree
+        
+        return Math.max(leftDepth, rightDepth) + 1; // Depth of current node is max depth of subtrees + 1
+    }
+}
+
+
+
+Binary Tree Inorder Traversal
+
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        inorderTraversal(root, list);
+        return list;
+    }
+
+    void inorderTraversal(TreeNode node, List<Integer> list) {
+        if (node == null) {
+            return;
+        }
+
+        inorderTraversal(node.left, list); // Traverse the left subtree
+        list.add(node.val); // Visit the root node
+        inorderTraversal(node.right, list); // Traverse the right subtree
+    }
+}
+
