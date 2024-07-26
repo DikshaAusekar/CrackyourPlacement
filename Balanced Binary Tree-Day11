@@ -1,0 +1,44 @@
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+class Solution {
+    public boolean isBalanced(TreeNode root) {
+        // Helper function returns -1 if unbalanced, otherwise returns the height
+        return height(root) != -1;
+    }
+
+    // Helper function to compute height and check balance
+    private int height(TreeNode node) {
+        if (node == null) {
+            return 0; // Base case: empty tree has height 0
+        }
+
+        // Get heights of left and right subtrees
+        int leftHeight = height(node.left);
+        int rightHeight = height(node.right);
+
+        // If either subtree is unbalanced, return -1
+        if (leftHeight == -1 || rightHeight == -1) {
+            return -1;
+        }
+
+        // If the difference in heights is more than 1, return -1
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+
+        // Return the height of the current subtree
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+}
+
