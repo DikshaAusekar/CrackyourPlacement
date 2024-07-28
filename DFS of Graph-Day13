@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+
+class Solution {
+    // Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        ArrayList<Integer> dfsResult = new ArrayList<>(); // To store the DFS traversal result
+        boolean[] visited = new boolean[V]; // To keep track of visited nodes
+
+        // Start DFS from the first node (assuming node 0)
+        dfs(0, visited, adj, dfsResult);
+
+        return dfsResult;
+    }
+
+    // Recursive function to perform DFS traversal
+    private void dfs(int node, boolean[] visited, ArrayList<ArrayList<Integer>> adj, ArrayList<Integer> dfsResult) {
+        visited[node] = true;
+        dfsResult.add(node);
+
+        // Get all adjacent vertices of the current node
+        for (int neighbor : adj.get(node)) {
+            if (!visited[neighbor]) {
+                dfs(neighbor, visited, adj, dfsResult);
+            }
+        }
+    }
+}
